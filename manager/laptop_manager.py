@@ -1,4 +1,9 @@
-from typing import List
+"""
+A module for laptop management
+
+Classes:
+    AbstractLaptopManager
+"""
 
 from models.abstract_laptop import AbstractLaptop
 from models.gaming_laptop import GamingLaptop
@@ -23,7 +28,7 @@ class AbstractLaptopManager:
         Finds gaming laptops in the laptop manager.
     """
 
-    def __init__(self, laptops: List[AbstractLaptop] = None):
+    def __init__(self, laptops: list[AbstractLaptop] = None):
         self.laptops = laptops if laptops else []
 
     def add_laptop(self, laptop: AbstractLaptop):
@@ -42,7 +47,7 @@ class AbstractLaptopManager:
 
         self.laptops.append(laptop)
 
-    def find_laptops_with_ram_value(self, value: int) -> List[AbstractLaptop]:
+    def find_laptops_with_ram_value(self, value: int) -> list[AbstractLaptop]:
         """
         Finds laptops with a specific RAM value.
 
@@ -59,7 +64,7 @@ class AbstractLaptopManager:
 
         return [laptop for laptop in self.laptops if laptop.ram == value]
 
-    def find_gaming_laptops(self) -> List[GamingLaptop]:
+    def find_gaming_laptops(self) -> list[GamingLaptop]:
         """
         Finds gaming laptops in the laptop manager.
 

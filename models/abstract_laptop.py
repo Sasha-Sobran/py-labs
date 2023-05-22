@@ -1,4 +1,8 @@
+"""
+Module for AbstractLaptop
+"""
 from abc import ABC, abstractmethod
+from typing import final, Final
 
 
 class AbstractLaptop(ABC):
@@ -22,8 +26,9 @@ class AbstractLaptop(ABC):
         Abstract method to replace the laptop's battery with a new one.
     """
 
-    MAX_BATTERY_CHARGE = 100
+    MAX_BATTERY_CHARGE: Final[int] = 100
 
+    # pylint: disable=too-many-arguments
     def __init__(self, model="UNKNOWN", screen_size=15.6, ram=8, storage=256,
                  current_battery_life=20, battery_life=5, battery_charge=0):
         self.model = model
@@ -34,6 +39,7 @@ class AbstractLaptop(ABC):
         self.battery_life = battery_life
         self.battery_charge = battery_charge
 
+    @final
     def add_ram(self, value):
         """
         Adds RAM to the laptop.
@@ -49,6 +55,7 @@ class AbstractLaptop(ABC):
         """
         self.ram += value
 
+    @final
     def add_storage(self, value):
         """
         Adds storage to the laptop.
@@ -64,6 +71,7 @@ class AbstractLaptop(ABC):
         """
         self.storage += value
 
+    @final
     def charge(self):
         """
         Charges the laptop's battery to the maximum level.
@@ -81,9 +89,8 @@ class AbstractLaptop(ABC):
             raise Exception("No reason to charge")
         self.battery_charge = AbstractLaptop.MAX_BATTERY_CHARGE
 
-    @classmethod
     @abstractmethod
-    def replace_battery(cls, capacity_in_hours):
+    def replace_battery(self, capacity_in_hours):
         """
         Abstract method to replace the laptop's battery with a new one.
 

@@ -1,3 +1,9 @@
+"""
+A module for representing Business Laptop
+
+Classes:
+    BusinessLaptop
+"""
 from models.abstract_laptop import AbstractLaptop
 
 
@@ -18,6 +24,7 @@ class BusinessLaptop(AbstractLaptop):
         Method to replace the laptop's battery with a new one.
     """
 
+    # pylint: disable=too-many-arguments
     def __init__(self, model="UNKNOWN", screen_size=15.6, ram=8, storage=256,
                  current_battery_life=20, battery_life=5, battery_charge=0,
                  number_of_ports=0, warranty_in_years=0):
