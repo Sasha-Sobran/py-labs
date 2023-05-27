@@ -32,6 +32,7 @@ class BusinessLaptop(AbstractLaptop):
                          battery_life, battery_charge)
         self.number_of_ports = number_of_ports
         self.warranty_in_years = warranty_in_years
+        self.installed_programs = {"Program 1", "Program 2", "Program 3", "Program 4"}
 
     def replace_battery(self, capacity_in_hours):
         """

@@ -4,6 +4,8 @@ Module for AbstractLaptop
 from abc import ABC, abstractmethod
 from typing import final, Final
 
+from decorators.laptop_decorator import count_of_arguments, limit_calls
+
 
 class AbstractLaptop(ABC):
     """
@@ -38,6 +40,7 @@ class AbstractLaptop(ABC):
         self.current_battery_life = current_battery_life
         self.battery_life = battery_life
         self.battery_charge = battery_charge
+        self.installed_programs = None
 
     @final
     def add_ram(self, value):
@@ -103,6 +106,42 @@ class AbstractLaptop(ABC):
         -------
         None
         """
+
+    def battery_status(self):
+        """
+        Returns the battery status of the laptop based on the current battery charge level.
+
+        Returns
+        -------
+        str
+            The battery status, which can be "Low", "Medium", or "High".
+        """
+        if self.battery_charge < 30:
+            return "Need charge"
+        if self.battery_charge < 70:
+            return "Dont need charge"
+        return "DONT NEED CHARGE"
+
+    # pylint: disable=line-too-long
+    def get_attributes_by_type(self, data_type=None):
+        """
+        Returns a dictionary with attributes and values of object based on the specified data type,
+        or the entire dictionary if no data type is provided.
+
+        Parameters
+        ----------
+        data_type : type, optional
+            The data type to filter the attributes. Default is None.
+
+        Returns
+        -------
+        dict
+            A dictionary containing the attributes and values of the object that match the specified
+             data type, or the entire dictionary if no data type is provided.
+        """
+        if data_type is not None:
+            return {key: value for key, value in self.__dict__.items() if isinstance(value, data_type)}
+        return self.__dict__
 
     def __str__(self):
         attrs = self.__dict__

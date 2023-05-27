@@ -32,6 +32,7 @@ class Ultrabook(AbstractLaptop):
                          battery_life, battery_charge)
         self.weight = weight
         self.thickness = thickness
+        self.installed_programs = {"Utility 1", "Utility 2", "Utility 3", "Utility 4"}
 
     def replace_battery(self, capacity_in_hours):
         pass
