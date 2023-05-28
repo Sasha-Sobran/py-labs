@@ -4,8 +4,6 @@ Module for AbstractLaptop
 from abc import ABC, abstractmethod
 from typing import final, Final
 
-from decorators.laptop_decorator import count_of_arguments, limit_calls
-
 
 class AbstractLaptop(ABC):
     """

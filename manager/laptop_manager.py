@@ -103,11 +103,31 @@ class AbstractLaptopManager:
         return [laptop.battery_status() for laptop in self.laptops]
 
     def laptop_enumerate(self):
+        """
+        Enumerates and prints the laptops in the laptop manager.
+
+        Prints the index and details of each laptop in the laptop manager.
+
+        Returns
+        -------
+        None
+        """
+
         for index, laptop in list(enumerate(self.laptops)):
             print(f"{index + 1}) {laptop}")
 
     @count_of_arguments
     def status_of_laptops_charge(self):
+        """
+        Prints the status of the laptops' battery charge.
+
+        Prints the battery status of each laptop in the laptop manager.
+
+        Returns
+        -------
+        None
+        """
+
         for laptop, status in list(zip(self.laptops, self.laptop_status_list())):
             print(f'Status of "{laptop.model}" is {status}')
 

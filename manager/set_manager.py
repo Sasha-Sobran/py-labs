@@ -1,7 +1,22 @@
+"""
+A module for managing sets of installed programs from a laptop manager.
+
+Classes:
+    SetManager
+"""
 from manager.laptop_manager import AbstractLaptopManager
 
 
 class SetManager:
+    """
+       A class representing a set manager that iterates over installed programs of laptops in an
+       AbstractLaptopManager.
+
+       Attributes
+       ----------
+       manager : AbstractLaptopManager
+           The AbstractLaptopManager instance to manage sets from.
+    """
     def __init__(self, manager: AbstractLaptopManager):
         self.manager = manager
         self.current_index = -1
