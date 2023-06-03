@@ -32,6 +32,7 @@ class GamingLaptop(AbstractLaptop):
                          battery_life, battery_charge)
         self.number_of_fans = number_of_fans
         self.graphics_processor = graphics_processor
+        self.installed_programs = {"Game 1", "Game 2", "Game 3", "Game 4"}
 
     def replace_battery(self, capacity_in_hours):
         """

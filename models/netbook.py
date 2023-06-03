@@ -32,6 +32,7 @@ class Netbook(AbstractLaptop):
                          battery_life, battery_charge)
         self.operating_system = operating_system
         self.web_cam = web_cam
+        self.installed_programs = {"Program A", "Program B", "Program C", "Program D"}
 
     def replace_battery(self, capacity_in_hours):
         """

@@ -4,7 +4,7 @@ A module for laptop management
 Classes:
     AbstractLaptopManager
 """
-
+from decorators.laptop_decorator import count_of_arguments
 from models.abstract_laptop import AbstractLaptop
 from models.gaming_laptop import GamingLaptop
 
@@ -30,6 +30,19 @@ class AbstractLaptopManager:
 
     def __init__(self, laptops: list[AbstractLaptop] = None):
         self.laptops = laptops if laptops else []
+
+    def __len__(self):
+        return len(self.laptops[::-1])
+
+    def __getitem__(self, index):
+        if index < 0:
+            return self.laptops[0]
+        if index <= len(self.laptops) - 1:
+            return self.laptops[index]
+        return self.laptops[len(self.laptops) - 1]
+
+    def __iter__(self):
+        return iter(self.laptops[::-1])
 
     def add_laptop(self, laptop: AbstractLaptop):
         """
@@ -75,3 +88,62 @@ class AbstractLaptopManager:
         """
 
         return [laptop for laptop in self.laptops if isinstance(laptop, GamingLaptop)]
+
+    # pylint: disable=line-too-long
+    def laptop_status_list(self):
+        """
+           Returns a list of battery statuses for each laptop in the collection.
+
+           Returns
+           -------
+           list[str]
+               A list of battery statuses, indicating the battery status ("Low", "Medium", or "High")
+               for each laptop in the collection.
+           """
+        return [laptop.battery_status() for laptop in self.laptops]
+
+    def laptop_enumerate(self):
+        """
+        Enumerates and prints the laptops in the laptop manager.
+
+        Prints the index and details of each laptop in the laptop manager.
+
+        Returns
+        -------
+        None
+        """
+
+        for index, laptop in list(enumerate(self.laptops)):
+            print(f"{index + 1}) {laptop}")
+
+    @count_of_arguments
+    def status_of_laptops_charge(self):
+        """
+        Prints the status of the laptops' battery charge.
+
+        Prints the battery status of each laptop in the laptop manager.
+
+        Returns
+        -------
+        None
+        """
+
+        for laptop, status in list(zip(self.laptops, self.laptop_status_list())):
+            print(f'Status of "{laptop.model}" is {status}')
+
+    def check_condition_all_any(self, value):
+        """
+        Checks if all objects in the manager list satisfy the given condition,
+        and if at least one object satisfies the condition.
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+        dict
+            A dictionary with keys "all" and "any" and corresponding boolean values.
+        """
+        all_satisfy = all(laptop.ram > value for laptop in self.laptops)
+        any_satisfy = any(laptop.ram > value for laptop in self.laptops)
+        return {"all": all_satisfy, "any": any_satisfy}
