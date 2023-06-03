@@ -106,15 +106,13 @@ class AbstractLaptopManager:
         """
         Enumerates and prints the laptops in the laptop manager.
 
-        Prints the index and details of each laptop in the laptop manager.
+        Returns the index and details of each laptop in the laptop manager.
 
         Returns
         -------
         None
         """
-
-        for index, laptop in list(enumerate(self.laptops)):
-            print(f"{index + 1}) {laptop}")
+        return enumerate(self.laptops)
 
     @count_of_arguments
     def status_of_laptops_charge(self):
@@ -127,9 +125,7 @@ class AbstractLaptopManager:
         -------
         None
         """
-
-        for laptop, status in list(zip(self.laptops, self.laptop_status_list())):
-            print(f'Status of "{laptop.model}" is {status}')
+        return zip(self.laptops, self.laptop_status_list())
 
     def check_condition_all_any(self, value):
         """

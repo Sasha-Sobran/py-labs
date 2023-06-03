@@ -4,6 +4,7 @@ A module for representing Netbook
 Classes:
     Netbook
 """
+from Exceptions.exceptions import RedundantChargeException
 from models.abstract_laptop import AbstractLaptop
 
 
@@ -52,4 +53,4 @@ class Netbook(AbstractLaptop):
             self.battery_life = capacity_in_hours
             self.current_battery_life = capacity_in_hours
         else:
-            print("No reason to replace battery")
+            raise RedundantChargeException()

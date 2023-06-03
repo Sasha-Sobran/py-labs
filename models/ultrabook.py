@@ -4,6 +4,7 @@ A module for representing Ultrabook
 Classes:
     Ultrabook
 """
+from Exceptions.exceptions import ReplaceBatteryInUltrabookException
 from models.abstract_laptop import AbstractLaptop
 
 
@@ -35,4 +36,4 @@ class Ultrabook(AbstractLaptop):
         self.installed_programs = {"Utility 1", "Utility 2", "Utility 3", "Utility 4"}
 
     def replace_battery(self, capacity_in_hours):
-        pass
+        raise ReplaceBatteryInUltrabookException()

@@ -1,6 +1,3 @@
-"""
-
-"""
 from manager.set_manager import SetManager
 from manager.laptop_manager import AbstractLaptopManager
 from models.business_laptop import BusinessLaptop
@@ -20,3 +17,5 @@ if __name__ == '__main__':
     manager.add_laptop(Ultrabook())
     manager.add_laptop(Netbook())
     manager.add_laptop(BusinessLaptop())
+
+    manager.laptops[1].get_attributes_by_type()
