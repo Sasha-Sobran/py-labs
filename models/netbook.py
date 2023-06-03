@@ -5,6 +5,7 @@ Classes:
     Netbook
 """
 from Exceptions.exceptions import RedundantChargeException
+from decorators.laptop_decorator import logged
 from models.abstract_laptop import AbstractLaptop
 
 
@@ -35,6 +36,7 @@ class Netbook(AbstractLaptop):
         self.web_cam = web_cam
         self.installed_programs = {"Program A", "Program B", "Program C", "Program D"}
 
+    @logged(RedundantChargeException)
     def replace_battery(self, capacity_in_hours):
         """
         Method to replace the laptop's battery with a new one.
