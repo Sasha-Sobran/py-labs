@@ -1,9 +1,9 @@
 """
 This module provides decorators for counting function arguments and limiting function calls.
 """
-
-from Exceptions.exceptions import ToManyCallsException, NoSuchModeException
 import logging
+
+from Exceptions.exceptions import TooManyCallsException, NoSuchModeException
 
 
 def count_of_arguments(func):
@@ -29,7 +29,7 @@ def limit_calls(max_calls=3):
         def wrapper(*args, **kwargs):
             nonlocal calls
             if calls >= max_calls:
-                raise ToManyCallsException()
+                raise TooManyCallsException()
             calls += 1
             return func(*args, **kwargs)
 
@@ -39,11 +39,22 @@ def limit_calls(max_calls=3):
 
 
 def logged(exception, mode="console"):
+    """
+    decorator, that logging your function
+    Parameters
+    ----------
+    exception
+    mode
+
+    Returns
+    -------
+
+    """
+
     def decorator(func):
         def wrapper(*args, **kwargs):
             try:
-                result = func(*args, **kwargs)
-                return result
+                return func(*args, **kwargs)
             except exception as ex:
                 if mode == "console":
                     logging.error(ex.log_message)
@@ -52,6 +63,7 @@ def logged(exception, mode="console"):
                     logging.error(ex.log_message)
                 else:
                     raise NoSuchModeException() from ex
+            return None
 
         return wrapper
 

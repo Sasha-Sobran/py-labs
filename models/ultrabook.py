@@ -5,7 +5,6 @@ Classes:
     Ultrabook
 """
 from Exceptions.exceptions import ReplaceBatteryInUltrabookException
-from decorators.laptop_decorator import logged
 from models.abstract_laptop import AbstractLaptop
 
 
