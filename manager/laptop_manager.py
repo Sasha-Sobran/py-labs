@@ -4,7 +4,8 @@ A module for laptop management
 Classes:
     AbstractLaptopManager
 """
-from decorators.laptop_decorator import count_of_arguments
+from Exceptions.exceptions import TooManyCallsException
+from decorators.laptop_decorator import count_of_arguments, limit_calls, logged
 from models.abstract_laptop import AbstractLaptop
 from models.gaming_laptop import GamingLaptop
 
@@ -44,6 +45,8 @@ class AbstractLaptopManager:
     def __iter__(self):
         return iter(self.laptops[::-1])
 
+    @logged(TooManyCallsException, "file")
+    @limit_calls(3)
     def add_laptop(self, laptop: AbstractLaptop):
         """
         Adds a laptop to the laptop manager.

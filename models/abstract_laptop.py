@@ -4,6 +4,8 @@ Module for AbstractLaptop
 from abc import ABC, abstractmethod
 from typing import final, Final
 
+from Exceptions.exceptions import RedundantChargeException
+
 
 class AbstractLaptop(ABC):
     """
@@ -88,7 +90,7 @@ class AbstractLaptop(ABC):
         None
         """
         if self.battery_charge == AbstractLaptop.MAX_BATTERY_CHARGE:
-            raise Exception("No reason to charge")
+            raise RedundantChargeException
         self.battery_charge = AbstractLaptop.MAX_BATTERY_CHARGE
 
     @abstractmethod

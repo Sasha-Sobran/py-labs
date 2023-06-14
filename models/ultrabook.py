@@ -6,6 +6,7 @@ Classes:
 """
 from Exceptions.exceptions import ReplaceBatteryInUltrabookException
 from models.abstract_laptop import AbstractLaptop
+from decorators.laptop_decorator import limit_calls, count_of_arguments, logged
 
 
 class Ultrabook(AbstractLaptop):
@@ -35,5 +36,7 @@ class Ultrabook(AbstractLaptop):
         self.thickness = thickness
         self.installed_programs = {"Utility 1", "Utility 2", "Utility 3", "Utility 4"}
 
+    @count_of_arguments
+    @logged(ReplaceBatteryInUltrabookException, "file")
     def replace_battery(self, capacity_in_hours):
         raise ReplaceBatteryInUltrabookException()
