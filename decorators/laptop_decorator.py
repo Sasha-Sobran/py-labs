@@ -12,7 +12,7 @@ def count_of_arguments(func):
     """
 
     def inner(*args, **kwargs):
-        print(f"Number of arguments: {len(*args) + len(*kwargs)}")
+        print(f"Number of arguments: {len(args) + len(kwargs)}")
         func(*args, **kwargs)
 
     return inner

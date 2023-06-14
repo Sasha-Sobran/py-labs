@@ -1,8 +1,11 @@
-from models.netbook import Netbook
+from manager.laptop_manager import AbstractLaptopManager
 from models.ultrabook import Ultrabook
 
 if __name__ == '__main__':
-    ultrabook = Netbook()
-    ultrabook2 = Netbook()
-    ultrabook.replace_battery(39)
-    ultrabook2.replace_battery(1)
+    manager = AbstractLaptopManager()
+    manager.add_laptop(Ultrabook())
+    manager.add_laptop(Ultrabook())
+    manager.add_laptop(Ultrabook())
+    manager.add_laptop(Ultrabook())
+    ultrabook = Ultrabook()
+    ultrabook.replace_battery(2)
