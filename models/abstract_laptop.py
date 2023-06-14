@@ -28,9 +28,10 @@ class AbstractLaptop(ABC):
 
     MAX_BATTERY_CHARGE: Final[int] = 100
 
+    # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-arguments
     def __init__(self, model="UNKNOWN", screen_size=15.6, ram=8, storage=256,
-                 current_battery_life=20, battery_life=5, battery_charge=0):
+                 current_battery_life=20, battery_life=5, battery_charge=0, installed_programs=None):
         self.model = model
         self.screen_size = screen_size
         self.ram = ram
@@ -38,7 +39,7 @@ class AbstractLaptop(ABC):
         self.current_battery_life = current_battery_life
         self.battery_life = battery_life
         self.battery_charge = battery_charge
-        self.installed_programs = None
+        self.installed_programs = installed_programs
 
     @final
     def add_ram(self, value):

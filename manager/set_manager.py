@@ -17,9 +17,10 @@ class SetManager:
        manager : AbstractLaptopManager
            The AbstractLaptopManager instance to manage sets from.
     """
-    def __init__(self, manager: AbstractLaptopManager):
+
+    def __init__(self, manager):
         self.manager = manager
-        self.current_index = -1
+        self.current_index = 0
 
     def __iter__(self):
         for laptop in self.manager:
@@ -36,5 +37,8 @@ class SetManager:
         return self.manager[index].installed_programs
 
     def __next__(self):
+        if self.current_index > len(self):
+            raise StopIteration
+        current_iteration = self.manager[self.current_index].installed_programs
         self.current_index += 1
-        return self.manager[self.current_index].installed_programs
+        return current_iteration
